@@ -65,7 +65,7 @@ document.querySelectorAll('.add-to-cart-js').forEach((button)=>{
 
   button.addEventListener('click',()=>{
    const {productId} = button.dataset;
-
+     showAdded();
     let quantity =Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
     let isExist = false;
     cart.forEach((product)=>{
@@ -95,8 +95,13 @@ document.querySelectorAll('.add-to-cart-js').forEach((button)=>{
     document.querySelector('.cart-quantity-js').innerHTML = totalQty;
   })
 })
-
+let setTimeOutId;
 
 function showAdded(){
 
+clearTimeout(setTimeOutId);
+document.querySelector('.added-to-cart').classList.add("added-to-cart-show");
+ setTimeOutId = setTimeout(()=>{
+  document.querySelector('.added-to-cart').classList.remove("added-to-cart-show");
+},3000)
 }
