@@ -656,5 +656,21 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+   {
+    id: "alden_iyot_main_001",
+    image: "images/products/alden_Dila_picture.jpg",
+    name: "Alden naka dila photo card",
+    rating: {
+      stars: 5.0,
+      count: 9999
+    },
+    priceCents: 99999,
+    keywords: [
+      "photocard",
+      "Alden",
+      "Dila",
+      "iyotmaine"
+    ]
   }
 ];
