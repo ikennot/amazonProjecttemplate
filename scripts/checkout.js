@@ -6,6 +6,12 @@ let checkoutHTML=``;
 
       cart.forEach((checkOutItem)=>{
             let productID = checkOutItem.id;
+              let matchItem;
+     
+              products.forEach((ID)=>{
+                if(productID === ID.id)
+                  matchItem=ID;
+              })
             
                   checkoutHTML+=`   <div class="cart-item-container">
             <div class="delivery-date">
@@ -14,14 +20,14 @@ let checkoutHTML=``;
 
             <div class="cart-item-details-grid">
               <img class="product-image"
-                src="images/products/athletic-cotton-socks-6-pairs.jpg">
+                src="${matchItem.image}">
 
               <div class="cart-item-details">
                 <div class="product-name">
-                  Black and Gray Athletic Cotton Socks - 6 Pairs
+                  ${matchItem.name}
                 </div>
                 <div class="product-price">
-                  $10.90
+                  $${(matchItem.priceCents/100).toFixed(2)}
                 </div>
                 <div class="product-quantity">
                   <span>
