@@ -43,7 +43,7 @@ products.forEach((product)=>{
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart-${product.id}">
+          <div class="added-to-cart  added-to-cart-${product.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
@@ -75,6 +75,7 @@ export function updateCartQty()
    cart.forEach((cartItem)=>{
     totalQty+=cartItem.quantity;
    })
+     console.log(cart);
     document.querySelector('.cart-quantity-js').innerHTML = totalQty;
 }
 
@@ -85,5 +86,6 @@ document.querySelectorAll('.add-to-cart-js').forEach((button)=>{
     addToCart(productId);
     updateCartQty();
     showAdded(productId);
+  
   })
 })
