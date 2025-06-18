@@ -1,12 +1,14 @@
-export const cart =[
+import { renderCheckOut } from "../scripts/checkout";
+
+export let cart =[
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-    name: "Black and Gray Athletic Cotton Socks - 6 Pairs"
+    quantity: 5
   },
   {
    id: "alden_iyot_main_001",
 
-    name: "Black and Gray Athletic Cotton Socks - 6 Pairs"
+   quantity: 10
   }
 ];
 export function addToCart(productId)
@@ -33,4 +35,12 @@ export function addToCart(productId)
 
 }
 
+export function deleteCheckOut(productID){
+ cart.forEach((cartItem)=>{
+  if(productID === cartItem.id)
+    cart.splice(1,cartItem);
+    renderCheckOut();
+    
+ })
+}
 
