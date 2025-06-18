@@ -1,7 +1,7 @@
 import {cart, deleteCheckOut} from  '../data/cart.js';
 import { products} from '../data/products.js';
 import { formatCurrence } from './utils/money.js';
- function renderCheckOut(){
+
 let checkoutHTML=``;
       cart.forEach((checkOutItem)=>{
             let productID = checkOutItem.id;
@@ -12,7 +12,7 @@ let checkoutHTML=``;
                   matchItem=ID;
               })
             
-                  checkoutHTML+=`   <div class="cart-item-container">
+                  checkoutHTML+=`<div class="cart-item-container js-cart-item-container-${productID}">
             <div class="delivery-date">
               Delivery date: Tuesday, June 21
             </div>
@@ -89,12 +89,14 @@ let checkoutHTML=``;
           </div>`
       });
 document.querySelector(`.order-summary-js`).innerHTML = checkoutHTML;
- }
+ 
 
- renderCheckOut();
+
 document.querySelectorAll('.delete-quantity-link').forEach((container)=>{
   container.addEventListener(`click`,()=>{
     const {productId} = container.dataset;
      deleteCheckOut(productId);
+    let con = document.querySelector(`.js-cart-item-container-${productId}`);
+    con.remove();
   })
 })

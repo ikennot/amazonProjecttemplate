@@ -1,4 +1,4 @@
-import { renderCheckOut } from "../scripts/checkout";
+
 
 export let cart =[
   {
@@ -36,11 +36,10 @@ export function addToCart(productId)
 }
 
 export function deleteCheckOut(productID){
+
  cart.forEach((cartItem)=>{
   if(productID === cartItem.id)
-    cart.splice(1,cartItem);
-    renderCheckOut();
-    
+    cart.splice(cartItem,1);
  })
 }
 
