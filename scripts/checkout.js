@@ -4,7 +4,7 @@ import { formatCurrence } from './utils/money.js';
 
 let checkoutHTML=``;
       cart.forEach((checkOutItem)=>{
-            let productID = checkOutItem.id;
+            let productID = checkOutItem.productId;
               let matchItem;
      
               products.forEach((ID)=>{
@@ -100,3 +100,4 @@ document.querySelectorAll('.delete-quantity-link').forEach((container)=>{
     con.remove();
   })
 })
+

@@ -1,16 +1,12 @@
 
 
-export let cart =[
-  {
-    id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-    quantity: 5
-  },
-  {
-   id: "alden_iyot_main_001",
-
-   quantity: 10
-  }
+export let cart =JSON.parse(localStorage.getItem('cart'))||[
+ 
 ];
+
+function saveLocalStorage(){
+  localStorage.setItem('cart',JSON.stringify(cart));
+}
 export function addToCart(productId)
 {
         let quantity =Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
@@ -30,16 +26,18 @@ export function addToCart(productId)
       productId,
       quantity 
     });
-
+    saveLocalStorage();
   }
 
 }
 
 export function deleteCheckOut(productID){
-
+ let newCart = [];
  cart.forEach((cartItem)=>{
-  if(productID === cartItem.id)
-    cart.splice(cartItem,1);
+  if(productID !== cartItem.productId)
+    newCart.push(cartItem);
  })
+ cart = newCart;
+ saveLocalStorage();  
 }
 
