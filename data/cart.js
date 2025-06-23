@@ -1,9 +1,20 @@
 
 
-export let cart =JSON.parse(localStorage.getItem('cart'))||[
- 
-];
+export let cart =JSON.parse(localStorage.getItem('cart'));
 
+if(!cart){
+cart = [
+  {
+    id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+    quantity: 5
+  },
+  {
+   id: "alden_iyot_main_001",
+
+   quantity: 10
+  }
+];
+}
 function saveLocalStorage(){
   localStorage.setItem('cart',JSON.stringify(cart));
 }
@@ -12,7 +23,7 @@ export function addToCart(productId)
         let quantity =Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
       let isExist = false;
     cart.forEach((cartItem)=>{
-       if(cartItem.productId === productId)
+       if(cartItem.id === productId)
        {
         cartItem.quantity+=quantity;
        
@@ -23,8 +34,8 @@ export function addToCart(productId)
     if(!isExist){
 
     cart.push({
-      productId,
-      quantity 
+      id: productId,
+      quantity: quantity 
     });
     saveLocalStorage();
   }
@@ -34,10 +45,38 @@ export function addToCart(productId)
 export function deleteCheckOut(productID){
  let newCart = [];
  cart.forEach((cartItem)=>{
-  if(productID !== cartItem.productId)
+  if(productID !== cartItem.id)
     newCart.push(cartItem);
  })
  cart = newCart;
  saveLocalStorage();  
 }
+
+export function updateCartQty(fileString)
+{
+  let totalQty = 0;
+   cart.forEach((cartItem)=>{
+    totalQty+=cartItem.quantity;
+   })
+    
+   if(fileString ==='amazon')
+    document.querySelector('.cart-quantity-js').innerHTML = totalQty;
+  else if(fileString ==='checkout')
+    document.querySelector('.return-to-home-js').innerHTML = `${totalQty} items`
+}
+
+
+
+export function newUpdateQty(productID,newQty){
+
+  cart.forEach((cartItem)=>{
+    if(cartItem.id === productID){
+      cartItem.quantity = newQty;
+      saveLocalStorage();
+    }
+  })
+
+
+}
+
 

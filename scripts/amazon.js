@@ -1,9 +1,9 @@
-import {cart,addToCart} from  '../data/cart.js';
+import {cart,addToCart,updateCartQty} from  '../data/cart.js';
 import { products} from '../data/products.js';
 import { formatCurrence } from './utils/money.js';
-updateCartQty();
+const fileString ='amazon';
 let productsHTML= '';
-
+let cartFile = document.querySelector('.cart-quantity-js');
 products.forEach((product)=>{
    productsHTML+= `
         <div class="product-container">
@@ -71,25 +71,15 @@ document.querySelector(`.added-to-cart-${productid}`).classList.add("added-to-ca
 },3000)
 }
 
-export function updateCartQty()
-{
-  let totalQty = 0;
-   cart.forEach((cartItem)=>{
-    totalQty+=cartItem.quantity;
-   })
-    document.querySelector('.cart-quantity-js').innerHTML = totalQty;
-
-}
-
 
 document.querySelectorAll('.add-to-cart-js').forEach((button)=>{
   button.addEventListener('click',()=>{
    const {productId} = button.dataset;
     addToCart(productId);
-    updateCartQty();
+    updateCartQty(fileString);
     showAdded(productId);
   
   })
 })
 
-
+updateCartQty(fileString);
