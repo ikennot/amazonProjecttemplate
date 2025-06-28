@@ -2,12 +2,14 @@ import {cart, deleteCheckOut} from  '../data/cart.js';
 import { products} from '../data/products.js';
 import { formatCurrence } from './utils/money.js';
 import { updateCartQty,newUpdateQty} from '../data/cart.js';
-import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js'
+import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
+import DeliveryOptions from '../data/DeliveryOpttions.js';
+
 let fileString = 'checkout'
-const dateNow = dayjs()
-const nowShip = dateNow.format('dddd, MMMM DD');
-const day3Ship = dateNow.add(3,'day').format('dddd, MMMM DD');
-const freeShip =   dateNow.add(7,'day').format('dddd, MMMM DD');
+// const dateNow = dayjs()
+// const nowShip = dateNow.format('dddd, MMMM DD');
+// const day3Ship = dateNow.add(3,'day').format('dddd, MMMM DD');
+// const freeShip =   dateNow.add(7,'day').format('dddd, MMMM DD');
 
 hello();
 let checkoutHTML=``;
@@ -63,7 +65,7 @@ let checkoutHTML=``;
                     name="delivery-option-1-${productID}">
                   <div>
                     <div class="delivery-option-date">
-                    ${freeShip}
+                  Monday, June 23
                     </div>
                     <div class="delivery-option-price">
                       FREE Shipping
@@ -76,7 +78,7 @@ let checkoutHTML=``;
                     name="delivery-option-1-${productID}">
                   <div>
                     <div class="delivery-option-date">
-                       ${day3Ship}
+                     Tuesday, June 24
                     </div>
                     <div class="delivery-option-price">
                       $4.99 - Shipping
@@ -89,7 +91,7 @@ let checkoutHTML=``;
                     name="delivery-option-1-${productID}">
                   <div>
                     <div class="delivery-option-date">
-                       ${nowShip}
+                       Sunday, June 21
                     </div>
                     <div class="delivery-option-price">
                       $9.99 - Shipping
@@ -102,7 +104,11 @@ let checkoutHTML=``;
       });
 document.querySelector(`.order-summary-js`).innerHTML = checkoutHTML;
  
-
+function deliveryOptionsHtml(){
+  DeliveryOptions.forEach((DeliveryOption)=>{
+    let today =dayjs();
+  })
+}
 
 document.querySelectorAll('.delete-quantity-link').forEach((container)=>{
   container.addEventListener(`click`,()=>{
