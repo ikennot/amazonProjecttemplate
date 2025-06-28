@@ -2,10 +2,13 @@ import {cart, deleteCheckOut} from  '../data/cart.js';
 import { products} from '../data/products.js';
 import { formatCurrence } from './utils/money.js';
 import { updateCartQty,newUpdateQty} from '../data/cart.js';
+import {dayjs} from 
 let fileString = 'checkout'
-const dateNow = dayjs();
-const deliveryDate = dateNow.subtract(7,'days');
-console.log(deliveryDate);
+const dateNow = dayjs()
+const nowShip = dateNow.format('dddd, MMMM DD');
+const day3Ship = dateNow.add(3,'day').format('dddd, MMMM DD');
+const freeShip =   dateNow.add(7,'day').format('dddd, MMMM DD');
+
 hello();
 let checkoutHTML=``;
       cart.forEach((checkOutItem)=>{
@@ -60,7 +63,7 @@ let checkoutHTML=``;
                     name="delivery-option-1-${productID}">
                   <div>
                     <div class="delivery-option-date">
-                      Tuesday, June 21
+                    ${freeShip}
                     </div>
                     <div class="delivery-option-price">
                       FREE Shipping
@@ -73,7 +76,7 @@ let checkoutHTML=``;
                     name="delivery-option-1-${productID}">
                   <div>
                     <div class="delivery-option-date">
-                      Wednesday, June 15
+                       ${day3Ship}
                     </div>
                     <div class="delivery-option-price">
                       $4.99 - Shipping
@@ -86,7 +89,7 @@ let checkoutHTML=``;
                     name="delivery-option-1-${productID}">
                   <div>
                     <div class="delivery-option-date">
-                      Monday, June 13
+                       ${nowShip}
                     </div>
                     <div class="delivery-option-price">
                       $9.99 - Shipping
