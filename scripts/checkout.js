@@ -105,8 +105,27 @@ let checkoutHTML=``;
 document.querySelector(`.order-summary-js`).innerHTML = checkoutHTML;
  
 function deliveryOptionsHtml(){
+  let html = ``;
   DeliveryOptions.forEach((DeliveryOption)=>{
     let today =dayjs();
+    let dateString = today.add(DeliveryOption.deliveryDays,'day').format('dddd, MMMM DD');
+    const shipping = priceCents === 0 ? "FREE Shipping" : `$${formatCurrence(priceCents)} -Shipping`
+     html+=`
+          <div class="delivery-option">
+                  <input type="radio"
+                    class="delivery-option-input"
+                    name="delivery-option-1-${productID}">
+                  <div>
+                    <div class="delivery-option-date">
+                       ${dateString}
+                    </div>
+                    <div class="delivery-option-price">
+                      ${shipping}
+                    </div>
+                  </div>
+                </div>
+     `
+
   })
 }
 
