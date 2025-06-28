@@ -3,6 +3,10 @@ import { products} from '../data/products.js';
 import { formatCurrence } from './utils/money.js';
 import { updateCartQty,newUpdateQty} from '../data/cart.js';
 let fileString = 'checkout'
+const dateNow = dayjs();
+const deliveryDate = dateNow.subtract(7,'days');
+console.log(deliveryDate);
+hello();
 let checkoutHTML=``;
       cart.forEach((checkOutItem)=>{
             let productID = checkOutItem.id;
