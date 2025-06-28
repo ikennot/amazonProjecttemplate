@@ -2,7 +2,7 @@ import {cart, deleteCheckOut} from  '../data/cart.js';
 import { products} from '../data/products.js';
 import { formatCurrence } from './utils/money.js';
 import { updateCartQty,newUpdateQty} from '../data/cart.js';
-import {dayjs} from 
+import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js'
 let fileString = 'checkout'
 const dateNow = dayjs()
 const nowShip = dateNow.format('dddd, MMMM DD');
