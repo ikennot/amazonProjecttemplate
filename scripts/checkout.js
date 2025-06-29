@@ -163,6 +163,8 @@ document.querySelectorAll(`.save-quantity-link`).forEach((save)=>{
 document.querySelectorAll('.delivery-option-js').forEach((deliver)=>{
   deliver.addEventListener('click',()=>{
     const {productId,deliveryId} = deliver.dataset
+    console.log(productId)
+    console.log(deliveryId)
     updateDeliveryOption(productId,deliveryId)
   })
 })
