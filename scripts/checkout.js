@@ -86,7 +86,7 @@ function deliveryOptionsHtml(productID,checkOutItem){
     let isChecked = DeliveryOption.id === checkOutItem.deliveryOptionsId ? `checked` : ``; 
 
      html+=`
-          <div class="delivery-option">
+          <div class="delivery-option delivery-option-js">
                   <input type="radio" 
                     class="delivery-option-input"
                     name="delivery-option-1-${productID}"  ${isChecked}>
@@ -155,5 +155,11 @@ document.querySelectorAll(`.save-quantity-link`).forEach((save)=>{
  
 
 })
- 
+
+document.querySelectorAll('delivery-option-js').forEach((deliver)=>{
+  deliver.addEventListener('click',()=>{
+    
+  })
+})
+
 updateCartQty(fileString);

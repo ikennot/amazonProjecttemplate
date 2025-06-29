@@ -81,4 +81,6 @@ export function newUpdateQty(productID,newQty){
 
 }
 
-
+function updateDerliveryTime(){
+  
+}
