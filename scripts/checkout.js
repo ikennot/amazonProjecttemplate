@@ -6,9 +6,9 @@ import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import DeliveryOptions from '../data/DeliveryOptions.js';
 
 let fileString = 'checkout'
+ function renderSummary(){
+  let checkoutHTML=``;
 
-hello();
-let checkoutHTML=``;
       cart.forEach((checkOutItem)=>{
             let productID = checkOutItem.id;
               let matchItem;
@@ -76,6 +76,8 @@ let checkoutHTML=``;
           </div>`
       });
 document.querySelector(`.order-summary-js`).innerHTML = checkoutHTML;
+}
+renderSummary();
 
 function deliveryOptionsHtml(productID,checkOutItem){
   let html = ``;
@@ -165,7 +167,7 @@ document.querySelectorAll('.delivery-option-js').forEach((deliver)=>{
     const {productId,deliveryId} = deliver.dataset
     console.log(productId)
     console.log(deliveryId)
-    updateDeliveryOption(productId,deliveryId)
+    updateDeliveryOption(productId,deliveryId);
   })
 })
 
