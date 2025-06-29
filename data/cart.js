@@ -6,12 +6,12 @@ if(!cart){
 cart = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-    quantity: 5,
+    quantity: 2,
     deliveryOptionsId: '1'
   },
   {
    id: "alden_iyot_main_001",
-   quantity: 10,
+   quantity: 5,
      deliveryOptionsId: '2'
   }
 ];

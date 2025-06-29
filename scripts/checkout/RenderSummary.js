@@ -1,5 +1,5 @@
 import {cart, deleteCheckOut,updateDeliveryOption} from  '../../data/cart.js';
-import { products} from '../../data/products.js';
+import { products,matchProduct} from '../../data/products.js';
 import { formatCurrence } from '../utils/money.js';
 import { updateCartQty,newUpdateQty} from '../../data/cart.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
@@ -12,13 +12,8 @@ let fileString = 'checkout'
 
       cart.forEach((checkOutItem)=>{
             let productID = checkOutItem.id;
-              let matchItem;
+             const matchItem = matchProduct(productID);
      
-              products.forEach((ID)=>{
-                if(productID === ID.id)
-                  matchItem=ID;
-           
-              })
               
               let deliveryOptionsId = checkOutItem.deliveryOptionsId;
               let deliveryOption;
@@ -29,10 +24,7 @@ let fileString = 'checkout'
               })
               let today =dayjs();
               let dateString = today.add(deliveryOption.deliveryDays,'day').format('dddd, MMMM DD');
-              // let deliveryId;
-              // DeliveryOptions.forEach((Option)=>{
-              //   if(deli)
-              // })
+        
                   checkoutHTML+=`<div class="cart-item-container js-cart-item-container-${productID}">
             <div class="delivery-date">
               Delivery date: ${dateString}
