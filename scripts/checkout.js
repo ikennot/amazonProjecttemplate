@@ -20,11 +20,21 @@ let checkoutHTML=``;
               })
               
               let deliveryOptionsId = checkOutItem.deliveryOptionsId;
-              let deliveryId;
-              DeliveryOptions
+              let deliveryOption;
+              DeliveryOptions.forEach((Option)=>{
+                if(deliveryOptionsId === Option.id){
+                  deliveryOption = Option;
+                }
+              })
+              let today =dayjs();
+              let dateString = today.add(deliveryOption.deliveryDays,'day').format('dddd, MMMM DD');
+              // let deliveryId;
+              // DeliveryOptions.forEach((Option)=>{
+              //   if(deli)
+              // })
                   checkoutHTML+=`<div class="cart-item-container js-cart-item-container-${productID}">
             <div class="delivery-date">
-              Delivery date: Tuesday, June 21
+              Delivery date: ${dateString}
             </div>
 
             <div class="cart-item-details-grid">
