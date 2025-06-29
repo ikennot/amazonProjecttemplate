@@ -6,10 +6,6 @@ import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import DeliveryOptions from '../data/DeliveryOptions.js';
 
 let fileString = 'checkout'
-// const dateNow = dayjs()
-// const nowShip = dateNow.format('dddd, MMMM DD');
-// const day3Ship = dateNow.add(3,'day').format('dddd, MMMM DD');
-// const freeShip =   dateNow.add(7,'day').format('dddd, MMMM DD');
 
 hello();
 let checkoutHTML=``;
@@ -22,7 +18,10 @@ let checkoutHTML=``;
                   matchItem=ID;
            
               })
-            
+              
+              let deliveryOptionsId = checkOutItem.deliveryOptionsId;
+              let deliveryId;
+              DeliveryOptions
                   checkoutHTML+=`<div class="cart-item-container js-cart-item-container-${productID}">
             <div class="delivery-date">
               Delivery date: Tuesday, June 21
@@ -67,7 +66,7 @@ let checkoutHTML=``;
           </div>`
       });
 document.querySelector(`.order-summary-js`).innerHTML = checkoutHTML;
- 
+
 function deliveryOptionsHtml(productID,checkOutItem){
   let html = ``;
   DeliveryOptions.forEach((DeliveryOption)=>{
