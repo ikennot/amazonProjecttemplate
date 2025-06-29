@@ -76,8 +76,6 @@ let fileString = 'checkout'
           </div>`
       });
 document.querySelector(`.order-summary-js`).innerHTML = checkoutHTML;
-}
-renderSummary();
 
 function deliveryOptionsHtml(productID,checkOutItem){
   let html = ``;
@@ -164,11 +162,14 @@ document.querySelectorAll(`.save-quantity-link`).forEach((save)=>{
 
 document.querySelectorAll('.delivery-option-js').forEach((deliver)=>{
   deliver.addEventListener('click',()=>{
-    const {productId,deliveryId} = deliver.dataset
-    console.log(productId)
-    console.log(deliveryId)
+    const {productId,deliveryId} = deliver.dataset;
     updateDeliveryOption(productId,deliveryId);
+    renderSummary();
   })
 })
 
 updateCartQty(fileString);
+
+}
+
+renderSummary();
