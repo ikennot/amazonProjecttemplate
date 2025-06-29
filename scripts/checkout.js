@@ -1,4 +1,4 @@
-import {cart, deleteCheckOut} from  '../data/cart.js';
+import {cart, deleteCheckOut,updateDeliveryOption} from  '../data/cart.js';
 import { products} from '../data/products.js';
 import { formatCurrence } from './utils/money.js';
 import { updateCartQty,newUpdateQty} from '../data/cart.js';
@@ -86,10 +86,14 @@ function deliveryOptionsHtml(productID,checkOutItem){
     let isChecked = DeliveryOption.id === checkOutItem.deliveryOptionsId ? `checked` : ``; 
 
      html+=`
-          <div class="delivery-option delivery-option-js">
+          <div class="delivery-option delivery-option-js"
+           data-product-id ="${productID}"
+          data-delivery-id ="${DeliveryOption.id}"
+          >
                   <input type="radio" 
                     class="delivery-option-input"
-                    name="delivery-option-1-${productID}"  ${isChecked}>
+                    name="delivery-option-1-${productID}"
+                    ${isChecked}>
                   <div>
                     <div class="delivery-option-date">
                        ${dateString}
@@ -156,9 +160,10 @@ document.querySelectorAll(`.save-quantity-link`).forEach((save)=>{
 
 })
 
-document.querySelectorAll('delivery-option-js').forEach((deliver)=>{
+document.querySelectorAll('.delivery-option-js').forEach((deliver)=>{
   deliver.addEventListener('click',()=>{
-    
+    const {productId,deliveryId} = deliver.dataset
+    updateDeliveryOption(productId,deliveryId)
   })
 })
 

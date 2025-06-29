@@ -81,6 +81,14 @@ export function newUpdateQty(productID,newQty){
 
 }
 
-function updateDerliveryTime(){
-  
+export function updateDeliveryOption(productId,deliveryOptionId){
+  let matchItem;
+    cart.forEach((cartItem)=>{
+      if(cartItem.deliveryOptionsId === deliveryOptionId){
+            matchItem = cartItem;
+      }
+    })
+
+    matchItem.deliveryOptionsId = deliveryOptionId;
+    saveLocalStorage();
 }
