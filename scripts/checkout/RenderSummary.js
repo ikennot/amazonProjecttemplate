@@ -111,6 +111,7 @@ document.querySelectorAll('.delete-quantity-link').forEach((container)=>{
      deleteCheckOut(productId);
     let con = document.querySelector(`.js-cart-item-container-${productId}`);
     con.remove();
+    paymentSummary();
     updateCartQty(fileString);
   })
 })
@@ -148,6 +149,7 @@ document.querySelectorAll(`.save-quantity-link`).forEach((save)=>{
     newUpdateQty(saveId,quantityValue) 
     document.querySelector('.quantity-label').innerHTML = `${quantityValue}`
     updateCartQty(fileString)
+      paymentSummary();
     valid.innerHTML= '';
   })
  
