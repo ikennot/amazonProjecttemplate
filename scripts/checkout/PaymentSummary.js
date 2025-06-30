@@ -11,7 +11,10 @@ cart.forEach((cartItem)=>{
     shippingFee += deliveryMatchItem.priceCents;
     
 })
-
+  
+const totalWithoutTax = total + shippingFee;
+const tax = totalWithoutTax * 0.1;
+const orderTotal = tax + totalWithoutTax;
 let paymentSummaryHTML = `
  <div class="payment-summary-title">
             Order Summary
@@ -19,27 +22,27 @@ let paymentSummaryHTML = `
 
           <div class="payment-summary-row">
             <div>Items (3):</div>
-            <div class="payment-summary-money">$42.75</div>
+            <div class="payment-summary-money">$${(total/100).toFixed(2)}</div>
           </div>
 
           <div class="payment-summary-row">
             <div>Shipping &amp; handling:</div>
-            <div class="payment-summary-money">$4.99</div>
+            <div class="payment-summary-money">$${(shippingFee/100).toFixed(2)}</div>
           </div>
 
           <div class="payment-summary-row subtotal-row">
             <div>Total before tax:</div>
-            <div class="payment-summary-money">$47.74</div>
+            <div class="payment-summary-money">$${(totalWithoutTax/100).toFixed(2)}</div>
           </div>
 
           <div class="payment-summary-row">
             <div>Estimated tax (10%):</div>
-            <div class="payment-summary-money">$4.77</div>
+            <div class="payment-summary-money">$${(tax/100).toFixed(2)}</div>
           </div>
 
           <div class="payment-summary-row total-row">
             <div>Order total:</div>
-            <div class="payment-summary-money">$52.51</div>
+            <div class="payment-summary-money">$${(orderTotal/100).toFixed(2)}</div>
           </div>
 
           <button class="place-order-button button-primary">
@@ -47,6 +50,6 @@ let paymentSummaryHTML = `
           </button>
 
 `
-
+document.querySelector('.payment-summary-js').innerHTML = paymentSummaryHTML
 }
 
