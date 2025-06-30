@@ -4,6 +4,7 @@ import { formatCurrence } from '../utils/money.js';
 import { updateCartQty,newUpdateQty} from '../../data/cart.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import DeliveryOptions from '../../data/DeliveryOptions.js';
+import { paymentSummary } from './PaymentSummary.js';
 
 
  export function renderSummary(){
@@ -158,6 +159,7 @@ document.querySelectorAll('.delivery-option-js').forEach((deliver)=>{
     const {productId,deliveryId} = deliver.dataset;
     updateDeliveryOption(productId,deliveryId);
     renderSummary();
+    paymentSummary();
   })
 })
 

@@ -1,6 +1,7 @@
 import { cart } from "../../data/cart.js";
 import { matchProduct } from "../../data/products.js";
-import DeliveryOptions,{ MatchDeliveryId } from "../../data/DeliveryOptions.js";
+import { formatCurrence } from "../utils/money.js";
+import { MatchDeliveryId } from "../../data/DeliveryOptions.js";
 export function paymentSummary(){
 let total = 0;
 let shippingFee = 0;
@@ -22,27 +23,27 @@ let paymentSummaryHTML = `
 
           <div class="payment-summary-row">
             <div>Items (3):</div>
-            <div class="payment-summary-money">$${(total/100).toFixed(2)}</div>
+            <div class="payment-summary-money">$${formatCurrence(total)}</div>
           </div>
 
           <div class="payment-summary-row">
             <div>Shipping &amp; handling:</div>
-            <div class="payment-summary-money">$${(shippingFee/100).toFixed(2)}</div>
+            <div class="payment-summary-money">$${formatCurrence(shippingFee)}</div>
           </div>
 
           <div class="payment-summary-row subtotal-row">
             <div>Total before tax:</div>
-            <div class="payment-summary-money">$${(totalWithoutTax/100).toFixed(2)}</div>
+            <div class="payment-summary-money">$${formatCurrence(totalWithoutTax)}</div>
           </div>
 
           <div class="payment-summary-row">
             <div>Estimated tax (10%):</div>
-            <div class="payment-summary-money">$${(tax/100).toFixed(2)}</div>
+            <div class="payment-summary-money">$${formatCurrence(tax)}</div>
           </div>
 
           <div class="payment-summary-row total-row">
             <div>Order total:</div>
-            <div class="payment-summary-money">$${(orderTotal/100).toFixed(2)}</div>
+            <div class="payment-summary-money">$${formatCurrence(orderTotal)}</div>
           </div>
 
           <button class="place-order-button button-primary">
