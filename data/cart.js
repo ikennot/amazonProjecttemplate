@@ -61,10 +61,23 @@ export function updateCartQty(fileString)
     totalQty+=cartItem.quantity;
    })
     
-   if(fileString ==='amazon')
+  switch (fileString) {
+  case 'amazon':
     document.querySelector('.cart-quantity-js').innerHTML = totalQty;
-  else if(fileString ==='checkout')
-    document.querySelector('.return-to-home-js').innerHTML = `${totalQty} items`
+    break;
+
+  case 'checkout':
+    document.querySelector('.return-to-home-js').innerHTML = `${totalQty} items`;
+    break;
+  case 'PaymentSummary':
+    document.querySelector('.payment-items-js').innerHTML = `Items (${totalQty}):`;
+    break;
+  // Optional: handle default case
+  default:
+    // Do nothing or log unknown case
+    break;
+}
+
 }
 
 

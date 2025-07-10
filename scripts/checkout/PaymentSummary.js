@@ -1,7 +1,8 @@
-import { cart } from "../../data/cart.js";
+import { cart,updateCartQty} from "../../data/cart.js";
 import { matchProduct } from "../../data/products.js";
 import { formatCurrence } from "../utils/money.js";
 import { MatchDeliveryId } from "../../data/DeliveryOptions.js";
+const fileString = 'PaymentSummary';
 export function paymentSummary(){
 let total = 0;
 let shippingFee = 0;
@@ -22,7 +23,7 @@ let paymentSummaryHTML = `
           </div>
 
           <div class="payment-summary-row">
-            <div>Items (3):</div>
+            <div class="payment-items-js"></div>
             <div class="payment-summary-money">$${formatCurrence(total)}</div>
           </div>
 
@@ -53,4 +54,4 @@ let paymentSummaryHTML = `
 `
 document.querySelector('.payment-summary-js').innerHTML = paymentSummaryHTML
 }
-
+updateCartQty(fileString);
