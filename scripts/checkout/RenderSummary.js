@@ -8,7 +8,7 @@ import { paymentSummary } from './PaymentSummary.js';
 
 
  export function renderSummary(){
-let fileString = 'checkout'
+
   let checkoutHTML=``;
 
       cart.forEach((checkOutItem)=>{
@@ -165,7 +165,6 @@ document.querySelectorAll('.delivery-option-js').forEach((deliver)=>{
   })
 })
 
-updateCartQty(fileString);
 
 }
 
