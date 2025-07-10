@@ -53,5 +53,7 @@ let paymentSummaryHTML = `
 
 `
 document.querySelector('.payment-summary-js').innerHTML = paymentSummaryHTML
-}
 updateCartQty(fileString);
+console.log(cart)
+}
+
