@@ -1,10 +1,11 @@
 import {cart, deleteCheckOut,updateDeliveryOption} from  '../../data/cart.js';
-import { products,matchProduct} from '../../data/products.js';
+import { matchProduct} from '../../data/products.js';
 import { formatCurrence } from '../utils/money.js';
 import { updateCartQty,newUpdateQty} from '../../data/cart.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
-import DeliveryOptions from '../../data/DeliveryOptions.js';
+import DeliveryOptions,{calculateDeliveryDate} from '../../data/DeliveryOptions.js';
 import { paymentSummary } from './PaymentSummary.js';
+import { renderCheckOutHeader } from './CheckerHeader.js';
 
 
  export function renderSummary(){
@@ -23,8 +24,7 @@ import { paymentSummary } from './PaymentSummary.js';
                   deliveryOption = Option;
                 }
               })
-              let today =dayjs();
-              let dateString = today.add(deliveryOption.deliveryDays,'day').format('dddd, MMMM DD');
+              const dateString = calculateDeliveryDate(deliveryOption);
         
                   checkoutHTML+=`<div class="cart-item-container js-cart-item-container-${productID}">
             <div class="delivery-date">
@@ -74,8 +74,7 @@ document.querySelector(`.order-summary-js`).innerHTML = checkoutHTML;
 function deliveryOptionsHtml(productID,checkOutItem){
   let html = ``;
   DeliveryOptions.forEach((DeliveryOption)=>{
-    let today =dayjs();
-    let dateString = today.add(DeliveryOption.deliveryDays,'day').format('dddd, MMMM DD');
+   const dateString = calculateDeliveryDate(DeliveryOption);
     const shipping = DeliveryOption.priceCents === 0 ? 'FREE Shipping' : `$${formatCurrence(DeliveryOption.priceCents)} -Shipping`
     let isChecked = DeliveryOption.id === checkOutItem.deliveryOptionsId ? `checked` : ``; 
 
@@ -112,6 +111,7 @@ document.querySelectorAll('.delete-quantity-link').forEach((container)=>{
     let con = document.querySelector(`.js-cart-item-container-${productId}`);
     con.remove();
     paymentSummary();
+    renderCheckOutHeader();
     updateCartQty(fileString);
   })
 })
@@ -162,6 +162,7 @@ document.querySelectorAll('.delivery-option-js').forEach((deliver)=>{
     updateDeliveryOption(productId,deliveryId);
     renderSummary();
     paymentSummary();
+    renderCheckOutHeader();
   })
 })
 
