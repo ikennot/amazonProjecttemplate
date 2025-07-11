@@ -2,13 +2,15 @@
 
 // export let cart =JSON.parse(localStorage.getItem('cart'));
 
-function cart()
-{
-  const cart = { 
-    cartItems:undefined,
-    
-    loadFromStorage(){
-        this.cartItems = JSON.parse(localStorage.getItem('cart-oop'));
+class Cart{
+    cartItems;
+    localStorageKey;
+   constructor(localStorageKey){
+    this.localStorageKey = localStorageKey;
+    this.loadFromStorage();
+   }
+   loadFromStorage(){
+        this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
     if(!this.cartItems){
     this.cartItems = [
   {
@@ -23,10 +25,11 @@ function cart()
   }
 ];
 }
- },
+ }
+
   saveLocalStorage(){
-  localStorage.setItem('cart-oop',JSON.stringify(this.cartItems));
-},
+  localStorage.setItem(this.localStorageKey,JSON.stringify(this.cartItems));
+}
 
  addToCart(productId)
 {
@@ -53,8 +56,9 @@ function cart()
 
   this.saveLocalStorage();
 
-},
- deleteCheckOut(productID){
+}
+
+deleteCheckOut(productID){
  let newCart = [];
  this.cartItems.forEach((cartItem)=>{
   if(productID !== cartItem.id)
@@ -62,7 +66,7 @@ function cart()
  })
  this.cartItems = newCart;
  this.saveLocalStorage();  
-},
+}
  updateCartQty(fileString)
 {
   let totalQty = 0;
@@ -87,8 +91,9 @@ function cart()
     break;
 }
 
-},
- newUpdateQty(productID,newQty){
+}
+
+newUpdateQty(productID,newQty){
 
   this.cartItems.forEach((cartItem)=>{
     if(cartItem.id === productID){
@@ -98,7 +103,7 @@ function cart()
   })
 
 
-},
+}
 
  updateDeliveryOption(productId,deliveryOptionId){
   let matchItem;
@@ -110,24 +115,12 @@ function cart()
 
     matchItem.deliveryOptionsId = deliveryOptionId;
     
-    saveLocalStorage();
+    this.saveLocalStorage();
 }
-
-
-
-
- }
-
-
-
- return cart;
 
 }
 
+const Cartnew = new Cart('cart-oop');
 
 
-
-
-
-
-
+console.log(Cartnew.cartItems)
